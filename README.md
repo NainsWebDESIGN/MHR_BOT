@@ -1,5 +1,6 @@
 "# MHR_BOT"
 
+- Git Token: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
 - [MHR Wiki](https://mhr.gameqb.net/)
 - [MHR 配裝器](https://mhrise.wiki-db.com/sim/?hl=zh-hant)
 
