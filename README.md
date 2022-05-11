@@ -1,12 +1,14 @@
 "# MHR_BOT"
 
-- Git Token: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
+- Git Token : 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
 - [MHR Wiki](https://mhr.gameqb.net/)
 - [MHR 配裝器](https://mhrise.wiki-db.com/sim/?hl=zh-hant)
 
 ---
 
 ```javascript
+
+防禦,2,騎乘名人,1,2,1,0
 風壓耐性,1,高速變形,2,0,0,0
 抑制偏移,1,,0,3,0,0
 水耐性,2,不屈,1,3,2,0
@@ -24,4 +26,5 @@
 翔蟲能手,2,水耐性,1,2,0,0
 弱點特效,1,,0,1,0,0
 收刀術,2,滿足感,2,1,0,0
+
 ```
