@@ -3,6 +3,7 @@
 - Git Token : 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
 - [MHR Wiki](https://mhr.gameqb.net/)
 - [MHR 配裝器](https://mhrise.wiki-db.com/sim/?hl=zh-hant)
+- [MHR 破曉](https://mhrise.kiranico.com/zh-Hant)
 
 ---
 
