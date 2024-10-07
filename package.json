@@ -4,13 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 1491 --open",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
+  "packageManager": "npm@6.9.0",
+  "engines": {
+    "node": "10.16.0"
+  },
   "dependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
