@@ -1,12 +1,24 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var express = require('express');
+// var path = require('path');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
+import express from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import cors from "cors";
 
-var app = express();
+import indexRouter from "./routes/index.js";
+import usersRouter from "./routes/users.js";
+
+const app = express();
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(logger('dev'));
 app.use(express.json());
