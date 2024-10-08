@@ -9,8 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "image",
-        "javascript"
+        "image"
       ],
       "index": "index.html",
       "main": "main.ts",
