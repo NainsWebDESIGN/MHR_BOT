@@ -17,7 +17,7 @@
       "dom"
     ],
     "paths": {
-    "@service": [ "app/service/index.service" ],
+    "@service": [ "app/service/*" ],
     "@pipe": [ "app/pipe/index.pipe" ],
     "@app/*": [ "app/*" ],
     "@ts/*": [ "app/ts/*"],
