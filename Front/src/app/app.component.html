@@ -1,4 +1,5 @@
-<p *ngFor="let skill of title">
+<p *ngFor="let skill of title;let i = index">
+  {{i+1}}.
   {{skill.skill1}} : {{skill.point1}},
   {{skill.skill2}} : {{skill.point2}},
   {{skill.hole}}

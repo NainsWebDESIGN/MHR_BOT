@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
     const box = res.split("_").map(item => {
       const itemData = item.split(",");
       let rock = {};
-      rock["skill1"] = itemData[0]
-      rock["skill2"] = itemData[2]
+      rock["skill1"] = itemData[0];
+      rock["skill2"] = itemData[2];
       rock["point1"] = itemData[1];
       rock["point2"] = itemData[3];
       rock['hole'] = `${itemData[4]}-${itemData[5]}-${itemData[6]}`;
