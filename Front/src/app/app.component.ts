@@ -9,7 +9,12 @@ export class AppComponent implements OnInit {
   title;
   constructor(private api: ApiService) { }
   ngOnInit() {
-    this.api.getData().subscribe(res => this.title = (typeof res == "string") ? this.changeData(res) : res);
+    // this.api.getData().subscribe(res => this.title = (typeof res == "string") ? this.changeData(res) : res);
+    this.api.testGoogleAppScript("get")
+      .subscribe(res => console.log(res));
+
+    this.api.testGoogleAppScript("post")
+      .subscribe(res => console.log(res));
   }
   changeData(res) {
     const box = res.split("_").map(item => {
