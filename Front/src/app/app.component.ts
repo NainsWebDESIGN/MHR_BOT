@@ -7,30 +7,22 @@ import { ApiService } from '@app/api.service';
 })
 export class AppComponent implements OnInit {
   title;
-  dataValue: number = 0;
-  timeInterVal;
   constructor(private api: ApiService) { }
   ngOnInit() {
-    this.api.getData().subscribe(res => {
-      this.title = (typeof res == "string") ? this.changeData(res) : res;
-      // this.api.testGoogleAppScript("post", 2862, "rock", this.title[this.dataValue]).subscribe(() => this.dataValue++);
-      // this.timeInterVal = setInterval(() => {
-      //   this.api.testGoogleAppScript("post", 2862, "rock", this.title[this.dataValue])
-      //     .subscribe(res => {
-      //       if (this.dataValue == this.title.length - 1) {
-      //         clearInterval(this.timeInterVal);
-      //         console.log(res);
-      //       } else {
-      //         this.dataValue++;
-      //       }
-      //     });
-      // }, 2000);
-    });
-    // this.api.testGoogleAppScript("get", 1491)
-    //   .subscribe(res => console.log(res));
-
-    // this.api.testGoogleAppScript("post")
-    //   .subscribe(res => console.log(res));
+    // this.api.getData().subscribe(res => this.title = (typeof res == "string") ? this.changeData(res) : res);
+    this.api.testGoogleAppScript("get", 1491)
+      .subscribe(res => {
+        this.title = res.map(item => {
+          return {
+            skill1: item[0],
+            skill2: item[2],
+            point1: item[1],
+            point2: item[3],
+            hole: item[4]
+          };
+        })
+        console.log(this.title);
+      });
   }
   changeData(res) {
     const box = res.split("_").map(item => {
