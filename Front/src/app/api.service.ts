@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import env from '@ts/env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
@@ -9,30 +11,24 @@ import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class ApiService {
-    googleUrl: string = "/macros/s/AKfycbwfxFbU0A-0Rfq9dEJkowEBge7CuQ5ZlmnRhJxl-HB2jhhzAbntwvgWZCSyOdA0Iisd/exec";
     constructor(private http: HttpClient) { }
     getData() {
         return this.http.get("assets/test.json").map(res => res);
     }
-    testGoogleAppScript(method: string) {
+    testGoogleAppScript(method: string, gateway: number, ...body) {
+        // console.log(method, gateway, body);
+        let url = `/macros/s/${env.webAPI}/exec?gateway=${gateway}`;
+
         switch (method) {
             case "get":
-                return this.http.get(this.googleUrl).map((res: any) => (!res.err) ? res.data : res.err_msg);
+                return this.http.get(url)
+                    .map((res: any) => (!res.err) ? res.data : res.err_msg);
             case "post":
-                const body = new FormData().append("test", "Nains");
-                // const body = { test: "Nains" };
-                // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-                const options = {
-                    headers: new HttpHeaders({
-                        'Content-Type': 'application/json',
-                        // 'Content-Type': 'text/plain;charset=utf-8',
-                        'Access-Control-Allow-Origin': '*',
-                        'followAllRedirects': 'true'
-                    })
-                }
-                return this.http.post(this.googleUrl, JSON.stringify(body), options)
-                    .map(res => console.log(res))
+                url = url + `&type=${body[0]}`;
+                const headers = new HttpHeaders({ 'Content-Type': 'text/plain;charset=utf-8' });
+                return this.http.post(url, JSON.stringify(body[1]), { headers })
                     .map((res: any) => (!res.err) ? res.data : res.err_msg)
+                    .catch(error => Observable.throw(error));
         }
     }
 
