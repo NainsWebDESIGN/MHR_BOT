@@ -17,7 +17,7 @@ export class ApiService {
     }
     testGoogleAppScript(method: string, gateway: number, ...body) {
         // console.log(method, gateway, body);
-        let url = `/macros/s/${env.webAPI}/exec?gateway=${gateway}`;
+        let url = env.url + `/macros/s/${env.webAPI}/exec?gateway=${gateway}`;
 
         switch (method) {
             case "get":
