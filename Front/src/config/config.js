@@ -8,6 +8,7 @@ function env() {
     } catch (e) {
       console.log(`Config url Error: ${e}`);
     }
+    console.log(_DEFAULT);
     return _DEFAULT;
   }
   window["env"] = env();
