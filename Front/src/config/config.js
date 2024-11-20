@@ -1,6 +1,6 @@
 function env() {
     const _DEFAULT = {
-        webAPI: "AKfycbz0CCRvG_t1upJMEuecWDYN2TdqBzWV_4PQfk0OLJifypepVvHWCMkWA9YzvqOPUmhB"
+        webAPI: "AKfycbwgVIScdFRncfGNACfBixqwveHchctpxTK0j-63Ci1BfMWV31uCuN64pgQ1GSQtuC3i"
     };
     return _DEFAULT;
   }
