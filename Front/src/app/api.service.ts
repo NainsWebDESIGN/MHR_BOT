@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import env from '@ts/env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { GateWay } from '@ts/enum';
+import env from '@ts/env';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
@@ -15,7 +16,7 @@ export class ApiService {
     getData() {
         return this.http.get("assets/test.json").map(res => res);
     }
-    testGoogleAppScript(method: string, gateway: number, ...body) {
+    testGoogleAppScript(method: string, gateway: GateWay, ...body) {
         // console.log(method, gateway, body);
         let url = env.url + `/macros/s/${env.webAPI}/exec?gateway=${gateway}`;
 

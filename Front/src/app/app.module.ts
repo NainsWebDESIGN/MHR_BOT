@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Component
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { RockComponent } from './rock/rock.component';
+import { EquipmentComponent } from './equipment/equipment.component';
 
 // Service
 import { ApiService } from '@app/api.service';
@@ -18,7 +21,10 @@ import { ApiService } from '@app/api.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RockComponent,
+    EquipmentComponent
   ],
   imports: [
     BrowserModule,

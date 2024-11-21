@@ -1,6 +1,12 @@
-<p *ngFor="let skill of title;let i = index">
-  {{i+1}}.
-  {{skill.skill1}} : {{skill.point1}},
-  {{skill.skill2}} : {{skill.point2}},
-  {{skill.hole}}
-</p>
+<ng-container *ngIf="title; else load">
+  <p *ngFor="let skill of title;let i = index">
+    {{i+1}}.
+    {{skill.skill1}} : {{skill.point1}},
+    {{skill.skill2}} : {{skill.point2}},
+    {{skill.hole}}
+  </p>
+</ng-container>
+
+<ng-template #load>
+  <p>Loading...</p>
+</ng-template>

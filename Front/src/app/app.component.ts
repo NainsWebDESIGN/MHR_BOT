@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '@app/api.service';
+import { GateWay } from '@ts/enum';
+import env from '@ts/env';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  title;
-  constructor(private api: ApiService) { }
+  title = null;
+  constructor(private api: ApiService) {
+    ['loadStyle', 'loadScript'].forEach(item => env[item].forEach(url => this.loadCDN(url, (item == 'loadStyle' ? 'link' : 'script'))));
+  }
   ngOnInit() {
     // this.api.getData().subscribe(res => this.title = (typeof res == "string") ? this.changeData(res) : res);
-    this.api.testGoogleAppScript("get", 1491)
+    this.api.testGoogleAppScript("get", GateWay.GET)
       .subscribe(res => {
         this.title = res.map(item => {
           return {
@@ -37,5 +41,23 @@ export class AppComponent implements OnInit {
     });
     console.log(JSON.stringify(box));
     return box;
+  }
+
+  private loadCDN(url: string, type: string) {
+    const head = <HTMLDivElement>document.head;
+    const element = document.createElement(type);
+    element.innerHTML = '';
+    switch (type) {
+      case 'link':
+        element['rel'] = "stylesheet";
+        element['href'] = url;
+        break;
+      case 'script':
+        element['src'] = url;
+        element['async'] = true;
+        element['defer'] = true;
+        break;
+    }
+    head.appendChild(element);
   }
 }
