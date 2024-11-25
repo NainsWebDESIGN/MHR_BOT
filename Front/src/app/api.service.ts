@@ -16,7 +16,7 @@ export class ApiService {
     getData() {
         return this.http.get("assets/test.json").map(res => res);
     }
-    testGoogleAppScript(method: string, gateway: GateWay, ...body) {
+    getGAS(method: string, gateway: GateWay, ...body) {
         // console.log(method, gateway, body);
         let url = env.url + `/macros/s/${env.webAPI}/exec?gateway=${gateway}`;
 
