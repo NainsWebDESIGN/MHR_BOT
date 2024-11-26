@@ -6,6 +6,7 @@
 - [MHR 配裝器](https://mhrise.wiki-db.com/sim/?hl=zh-hant)
 - [MHR 破曉](https://mhrise.kiranico.com/zh-Hant)
 - [Bootstrap5](https://bootstrap5.hexschool.com/docs/5.0/components/)
+- https://mhr.gameqb.net/?s= + "搜尋字樣"
 
 ---
 
