@@ -8,11 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 // Component
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RockComponent } from './rock/rock.component';
-import { EquipmentComponent } from './equipment/equipment.component';
+import { RockComponent } from './mhrSheet/rock/rock.component';
+import { EquipmentComponent } from './mhrSheet/equipment/equipment.component';
+import { MhrSheetComponent } from './mhrSheet/mhrSheet.component';
+import { PopupComponent } from './popup/popup.component';
+import { HeaderComponent } from './header/header.component';
 
 // Service
-import { ApiService } from '@app/api.service';
+import { ApiService } from '@service/api.service';
+import { UidStatusService } from '@service/uid-status.service';
+import { PopupService } from '@service/popup.service';
+import { AuthGuardService } from '@service/auth-guard.service';
 
 // Pipe && Component
 // import { xxx } from '@pipeModule';
@@ -24,7 +30,10 @@ import { ApiService } from '@app/api.service';
     AppComponent,
     LoginComponent,
     RockComponent,
-    EquipmentComponent
+    EquipmentComponent,
+    MhrSheetComponent,
+    PopupComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,7 @@ import { ApiService } from '@app/api.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, UidStatusService, PopupService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

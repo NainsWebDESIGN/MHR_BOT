@@ -7,3 +7,14 @@ body {
     color: #0d6efd;
     cursor: pointer;
 }
+
+.filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 9;
+}

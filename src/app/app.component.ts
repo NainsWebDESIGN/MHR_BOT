@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UidStatusService } from '@service/uid-status.service';
 import env from '@ts/env';
 import cdnModule from '@ts/loadCDN';
 
@@ -7,8 +9,13 @@ import cdnModule from '@ts/loadCDN';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  constructor() {
+  constructor(private uidStatus: UidStatusService, private router: Router) {
     ['loadStyle', 'loadScript'].forEach(item => env[item].forEach(url => cdnModule(url, (item == 'loadStyle' ? 'link' : 'script'))));
+    const uuid = localStorage.getItem("uid");
+    if (uuid) {
+      this.uidStatus.uid = uuid;
+      this.router.navigate([`/sheet/rock`]);
+    }
   }
   ngOnInit() {
     // this.api.getData().subscribe(res => this.title = (typeof res == "string") ? this.changeData(res) : res);

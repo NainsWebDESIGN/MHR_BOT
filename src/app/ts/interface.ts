@@ -4,3 +4,7 @@ export interface IDefault {
     loadStyle: string[];
     loadScript: string[];
 }
+export interface Popup {
+    show: boolean;
+    message: string;
+}

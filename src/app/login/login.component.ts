@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '@app/api.service';
+import { Router } from '@angular/router';
+import { ApiService } from '@service/api.service';
+import { UidStatusService } from '@service/uid-status.service';
+import { PopupService } from '@service/popup.service';
 import { GateWay } from '@ts/enum';
 
 @Component({
@@ -10,7 +13,7 @@ export class LoginComponent implements OnInit {
   title;
   username: string = "";
   password: string = "";
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router, private popup: PopupService, private uidStatus: UidStatusService) { }
   ngOnInit() {
     // this.api.getGAS("get", GateWay.GET)
     //   .subscribe(res => {
@@ -28,6 +31,13 @@ export class LoginComponent implements OnInit {
   }
   Login() {
     this.api.getGAS("post", GateWay.LOGIN, "login", { username: this.username, password: this.password })
-      .subscribe(res => console.log(res));
+      .subscribe(res => {
+        if (res['uuid']) {
+          this.uidStatus.uid = res['uuid'];
+          this.router.navigate([`/sheet/rock`]);
+        } else {
+          this.popup.open(res);
+        }
+      });
   }
 }

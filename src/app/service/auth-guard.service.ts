@@ -1,14 +1,18 @@
 // Angular
 import { Injectable } from '@angular/core';
+import { UidStatusService } from '@service/uid-status.service';
 import { CanActivate, CanLoad } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 
 /* 路由權限管理服務 */
 export class AuthGuardService implements CanLoad, CanActivate {
-
+    private loginSubject = new BehaviorSubject<boolean>(false);
+    login$ = this.loginSubject.asObservable();
     constructor(
+        private uidStatus: UidStatusService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
     ) { }
@@ -25,14 +29,16 @@ export class AuthGuardService implements CanLoad, CanActivate {
     }
 
     private checkLogin() {
-        // if (this.uidStatus.uid) {
-        //     return true;
-        // }
+        if (this.uidStatus.uid) {
+            this.loginSubject.next(true);
+            return true;
+        }
         /**
       * 登出
       */
-        // this.uidStatus.clear();
-        // this.router.navigate(['/login']);
+        this.loginSubject.next(false);
+        this.uidStatus.clear();
+        this.router.navigate(['/login']);
         return false;
     }
 }
