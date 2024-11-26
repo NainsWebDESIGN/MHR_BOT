@@ -27,13 +27,18 @@ export class ApiService {
                 return this.http.post(url, JSON.stringify(body[1]), { headers })
                     .map((res: any) => {
                         if (res.err_msg == "logout") {
-                            this.uidStatus.clear();
+                            this.logout();
                             return;
                         }
                         return (!res.err) ? res.data : res.err_msg;
                     })
                     .catch(error => Observable.throw(error));
         }
+    }
+
+    logout() {
+        this.getGAS("post", GateWay.LOGOUT, "", {}).subscribe();
+        this.uidStatus.clear();
     }
 
 }

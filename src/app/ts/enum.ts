@@ -4,7 +4,7 @@ export enum GateWay {
     ALL = 3943,
     DELETE = 4134,
     LOGIN = 6726,
-    back1 = 7687,
+    LOGOUT = 7687,
     back2 = 8278,
     back3 = 9319
 };

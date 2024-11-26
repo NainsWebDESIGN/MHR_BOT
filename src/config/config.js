@@ -1,7 +1,7 @@
 function env() {
     const _DEFAULT = {
         url: "",
-        webAPI: "AKfycbxcbycCsB04sFczR4rgUee-HIj6XuJkfpLlrzm6rJZAZHxuyj2nd5JRyvWEV0bvRLz1",
+        webAPI: "AKfycbzYzWxr0G6n9Jb1r5LKZvEIBSHufVgihy6IpyLUmjoAewHHI3Wl1UyxCpf_et1ElzRr",
         loadStyle: ['https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'],
         loadScript: []
     };
