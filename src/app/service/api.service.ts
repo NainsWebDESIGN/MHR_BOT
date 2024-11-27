@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UidStatusService } from '@service/uid-status.service';
+import { AuthGuardService } from '@service/auth-guard.service';
 import { Observable } from 'rxjs/Observable';
 import { GateWay } from '@ts/enum';
 import env from '@ts/env';
@@ -9,36 +10,31 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ApiService {
-    constructor(private http: HttpClient, private uidStatus: UidStatusService) { }
+    constructor(private http: HttpClient, private uidStatus: UidStatusService, private login: AuthGuardService) { }
     getData() {
         return this.http.get("assets/test.json").map(res => res);
     }
-    getGAS(method: string, gateway: GateWay, ...body) {
-        // console.log(method, gateway, body);
-        let url = env.url + `/macros/s/${env.webAPI}/exec?gateway=${gateway}`;
+    getGAS(gateway: GateWay, body, type: string = "rock") {
+        let url = env.url + `/macros/s/${env.webAPI}/exec?gateway=${gateway}&type=${type}`;
 
-        switch (method) {
-            case "get":
-                return this.http.get(url)
-                    .map((res: any) => (!res.err) ? res.data : res.err_msg);
-            case "post":
-                url = url + `&type=${body[0]}`;
-                const headers = new HttpHeaders({ 'Content-Type': 'text/plain;charset=utf-8' });
-                return this.http.post(url, JSON.stringify(body[1]), { headers })
-                    .map((res: any) => {
-                        if (res.err_msg == "logout") {
-                            this.logout();
-                            return;
-                        }
-                        return (!res.err) ? res.data : res.err_msg;
-                    })
-                    .catch(error => Observable.throw(error));
-        }
+        const headers = new HttpHeaders({ 'Content-Type': 'text/plain;charset=utf-8' });
+        return this.http.post(url, JSON.stringify(body), { headers })
+            .map((res: any) => {
+                // console.log(res);
+                if (res.err_msg == "logout") {
+                    this.logout();
+                    return res.err_msg;
+                }
+                return (!res.err) ? res.data : res.err_msg;
+            })
+            .catch(error => Observable.throw(error));
     }
 
     logout() {
-        this.getGAS("post", GateWay.LOGOUT, "", {}).subscribe();
-        this.uidStatus.clear();
+        this.getGAS(GateWay.LOGOUT, { uuid: this.uidStatus.uid }).subscribe(() => {
+            this.uidStatus.clear();
+            this.login.logout();
+        });
     }
 
 }

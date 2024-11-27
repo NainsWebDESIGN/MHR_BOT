@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '@service/api.service';
 import { AuthGuardService } from '@service/auth-guard.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthGuardService } from '@service/auth-guard.service';
 export class HeaderComponent implements OnInit {
   loginStatus: boolean = false;
   headerBtn: string = "rock";
-  constructor(private router: Router, private login: AuthGuardService) { }
+  constructor(private router: Router, private login: AuthGuardService, public api: ApiService) { }
 
   ngOnInit() {
     this.login.login$.subscribe(status => this.loginStatus = status);

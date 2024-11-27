@@ -1,3 +1,29 @@
-<p>
-  rock works!
-</p>
+<main style="
+display: flex;
+justify-content: center;
+align-items: center;">
+  <ng-container *ngIf="rock; else load">
+    <table class="table" style="max-width: 1400px; margin-top: 15px;border: 1px solid rgb(33, 37, 41)">
+      <thead class="thead-dark">
+        <tr>
+          <th style="border-right: 1px solid rgb(33,37,41);" scope="col">技能1</th>
+          <th style="border-right: 1px solid rgb(33,37,41);" scope="col">等級</th>
+          <th style="border-right: 1px solid rgb(33,37,41);" scope="col">技能2</th>
+          <th style="border-right: 1px solid rgb(33,37,41);" scope="col">等級</th>
+          <th scope="col">洞數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rock of rock">
+          <th style="border-right: 1px solid rgb(33,37,41);" scope="row">{{rock.skill1}}</th>
+          <td style="border-right: 1px solid rgb(33,37,41);">{{rock.point1}}</td>
+          <td style="border-right: 1px solid rgb(33,37,41);">{{rock.skill2}}</td>
+          <td style="border-right: 1px solid rgb(33,37,41);">{{rock.point1}}</td>
+          <td>{{rock.hole}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</main>
+
+<ng-template #load>Loading...</ng-template>

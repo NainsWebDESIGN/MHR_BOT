@@ -1,9 +1,9 @@
 function env() {
     const _DEFAULT = {
         url: "",
-        webAPI: "AKfycbzYzWxr0G6n9Jb1r5LKZvEIBSHufVgihy6IpyLUmjoAewHHI3Wl1UyxCpf_et1ElzRr",
-        loadStyle: ['https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'],
-        loadScript: []
+        webAPI: "AKfycbxqv-Sv_sYq5XuIOf-Ji5O6NWSVexFulFnMgDBb7e7tlznpAgemerfA_tZP4GQgo4xr",
+        loadStyle: ['https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'],
+        loadScript: ['https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js']
     };
     const Location = "mhrbot.zeabur";
     try {

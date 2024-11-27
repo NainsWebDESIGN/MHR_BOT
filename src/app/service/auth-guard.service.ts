@@ -41,4 +41,7 @@ export class AuthGuardService implements CanLoad, CanActivate {
         this.router.navigate(['/login']);
         return false;
     }
+    logout() {
+        this.loginSubject.next(false);
+    }
 }
