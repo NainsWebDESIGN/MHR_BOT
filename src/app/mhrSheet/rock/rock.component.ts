@@ -3,6 +3,7 @@ import { ApiService } from '@service/api.service';
 import { UidStatusService } from '@service/uid-status.service';
 import { PopupService } from '@service/popup.service';
 import { GateWay } from '@ts/enum';
+import skills from '@ts/mhrSkill';
 
 @Component({
   selector: 'app-rock',
@@ -10,9 +11,11 @@ import { GateWay } from '@ts/enum';
 })
 export class RockComponent implements OnInit {
   rock = null;
+  skills = skills;
   constructor(private api: ApiService, private popup: PopupService, private uidStatus: UidStatusService) { }
   ngOnInit() {
-    this.api.getGAS(GateWay.GET, { uuid: this.uidStatus.uid }).subscribe(res => {
+    console.log(skills);
+    this.api.postApi(GateWay.GET, { uuid: this.uidStatus.uid }).subscribe(res => {
       // console.log(res);
       if (typeof res === "string") {
         this.popup.open(res);

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '@service/api.service';
 import { UidStatusService } from '@service/uid-status.service';
-import { PopupService } from '@service/popup.service';
 import { GateWay } from '@ts/enum';
 
 @Component({
@@ -10,21 +9,21 @@ import { GateWay } from '@ts/enum';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  title;
+  submit: string = "Submit";
   username: string = "";
   password: string = "";
-  constructor(private api: ApiService, private router: Router, private popup: PopupService, private uidStatus: UidStatusService) { }
+  constructor(private api: ApiService, private router: Router, private uidStatus: UidStatusService) { }
   ngOnInit() {
   }
   Login() {
-    this.api.getGAS(GateWay.LOGIN, { username: this.username, password: this.password })
+    this.submit = "Loading...";
+    this.api.postApi(GateWay.LOGIN, { username: this.username, password: this.password })
       .subscribe(res => {
         if (res['uuid']) {
           this.uidStatus.uid = res['uuid'];
           this.router.navigate([`/sheet/rock`]);
-        } else {
-          this.popup.open(res);
         }
+        this.submit = "Submit";
       });
   }
 }

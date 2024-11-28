@@ -16,8 +16,8 @@ export class UidStatusService {
         return this.uuid;
     }
     clear() {
-        localStorage.removeItem('uid');
         this.uid = null;
+        localStorage.removeItem('uid');
         this.router.navigate(['/login']);
     }
 }
