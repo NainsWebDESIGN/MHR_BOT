@@ -23,7 +23,7 @@ export class ApiService {
             .map((res: any) => {
                 // console.log(res);
                 if (res.err_msg == "logout") {
-                    this.logout();
+                    this.logout(gateway);
                     return;
                 }
                 return (!res.err) ? res.data : res.err_msg;
@@ -31,11 +31,11 @@ export class ApiService {
             .catch(error => Observable.throw(error));
     }
 
-    logout() {
+    logout(gateway?: GateWay) {
         this.postApi(GateWay.LOGOUT, { uuid: this.uidStatus.uid }).subscribe(() => {
             this.uidStatus.clear();
             this.login.logout();
-            this.popup.open("驗證碼過期，請重新登入");
+            this.popup.open(`GateWay: ${gateway}, 驗證碼過期，請重新登入`);
         });
     }
 
