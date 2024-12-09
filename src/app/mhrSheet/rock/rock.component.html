@@ -27,3 +27,6 @@ align-items: center;">
 </main>
 
 <ng-template #load>Loading...</ng-template> -->
+<select name="rock" id="" *ngFor="let item of skills | object | formatArr">
+  <option *ngFor="let arr of item.arr" value="1">{{item.key}} {{arr}}</option>
+</select>

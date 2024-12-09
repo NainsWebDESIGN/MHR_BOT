@@ -32,11 +32,10 @@ export class ApiService {
     }
 
     logout(gateway?: GateWay) {
-        this.postApi(GateWay.LOGOUT, { uuid: this.uidStatus.uid }).subscribe(() => {
-            this.uidStatus.clear();
-            this.login.logout();
-            this.popup.open(`GateWay: ${gateway}, 驗證碼過期，請重新登入`);
-        });
+        this.postApi(GateWay.LOGOUT, { uuid: this.uidStatus.uid }).subscribe();
+        this.uidStatus.clear();
+        this.login.logout();
+        this.popup.open(`GateWay: ${gateway}, 驗證碼過期，請重新登入`);
     }
 
 }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ObjectPipe, formatArrPipe } from './app.pipe';
 
 // Component
 import { AppComponent } from './app.component';
@@ -33,7 +34,9 @@ import { AuthGuardService } from '@service/auth-guard.service';
     EquipmentComponent,
     MhrSheetComponent,
     PopupComponent,
-    HeaderComponent
+    HeaderComponent,
+    ObjectPipe,
+    formatArrPipe
   ],
   imports: [
     BrowserModule,
