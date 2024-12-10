@@ -14,7 +14,7 @@ export class RockComponent implements OnInit {
   skills = skills;
   constructor(private api: ApiService, private popup: PopupService, private uidStatus: UidStatusService) { }
   ngOnInit() {
-    console.log(skills);
+    // console.log(skills);
     this.api.postApi(GateWay.GET, { uuid: this.uidStatus.uid }).subscribe(res => {
       // console.log(res);
       if (typeof res === "string") {
